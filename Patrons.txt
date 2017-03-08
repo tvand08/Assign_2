@@ -1,0 +1,7 @@
+a	1111	John Doe	16
+a	2222	Sandra Someone	18
+a	3333	Tony Tuba	25
+a	4444	Jane Smith	62
+c	5555	Lil Orphan Annie	10
+c	6666	Terry Teenager	18
+c	7777	Bart Simpson	14

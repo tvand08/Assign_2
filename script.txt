@@ -1,0 +1,21 @@
+Item: 111.111   Loaned to 6666  due: 23
+Item: 111.222   Loaned to 6666  due: 23
+Item: 222.123   Loaned to 6666  due: 23
+Item: 333.567   Loaned to 6666  due: 23
+Item: 333.999   Loaned to 6666  due: 23
+Item: 111.111   Loaned to 3333  due: 23
+Item: 333.444   Loaned to 3333  due: 23
+Item: 444.333   Loaned to 3333  due: 24
+Item: 111.111  returned on 42
+Item: 111.111   Loaned to 4444  due: 23
+Item: 333.888   Loaned to 6666  due: 44
+Item: 111.111  returned on 43      Fine charged: $0.25
+Patron 3333  paid $0.25
+Item: 444.123   Loaned to 3333  due: 46
+Item: 333.444  returned on 43      Fine charged: $10.0
+Item: 444.123  returned on 48      Fine charged: $4.0
+Item: 444.123   Loaned to 2222  due: 51
+
+
+
+

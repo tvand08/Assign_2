@@ -1,0 +1,11 @@
+b	111.111	1	Lord of the Rings	J.R.R. Tolkien
+b	111.111	2	Lord of the Rings	J.R.R. Tolkien
+b	111.222	1	Clara Callan	R.W. Wright
+b	222.123	1	History of the World	Plato
+v	333.444	1	Adventures of a Cheerleader	X
+v	333.567	1	Kiss the Girls	R
+v	333.888	1	Batman Returns	P
+v	333.999	1	Dumbo	F
+g	444.123	1	Blood and Gore I	R	P
+g	444.333	1	Global Thermonuclear Warfare	P	N
+g	444.555	1	SimCity	F	X
