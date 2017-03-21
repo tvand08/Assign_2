@@ -14,4 +14,5 @@ public class Adult extends Patron {
     public Adult(String[] info){
         super(info);
     }
+
 }

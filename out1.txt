@@ -1,0 +1,13 @@
+6666 checked out 111.111, due 22
+6666 checked out 111.222, due 22
+6666 checked out 222.123, due 22
+6666 checked out 333.567, due 0
+6666 checked out 333.999, due 0
+3333 checked out 111.111, due 42
+3333 checked out 333.444, due 0
+3333 checked out 444.333, due 0
+6666 checked out 333.999, due 0
+6666 returned 111.111, Fine: $0.25
+6666 checked out 333.888, due 3
+3333 returned 111.111, Fine: $0.25
+Saving Database, Closing.

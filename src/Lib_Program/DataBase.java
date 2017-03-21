@@ -1,5 +1,6 @@
 package Lib_Program;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.LinkedList;
@@ -17,8 +18,13 @@ public class DataBase implements Serializable {
     public DataBase (LinkedList<Patron> p ,LinkedList<Item> i){
         this.people = p;
         this.items = i;
-
     }
+
+    /**
+     * find the Patron with the given ID
+     * @param ID: The desired ID
+     * @return Patron with num ID
+     */
     public Patron findPatron(String ID){
        for(Patron p : people){
             if(p.getNumber().equals(ID)){
@@ -29,6 +35,13 @@ public class DataBase implements Serializable {
         }
         return null;
     }
+
+    /**
+     * Find the Item with the given itemNum and copyNum
+     * @param itemNum: The designated ID
+     * @param copy: The copy number
+     * @return: Item found
+     */
     public Item findItem(String itemNum, int copy){
         for(Item h: items){
             if(h.getNumber().equals(itemNum)&& h.getCopy()==copy){
@@ -38,5 +51,36 @@ public class DataBase implements Serializable {
             }
         }
         return null;
+    }
+
+    /**
+     * get the list of items
+     * @return: list of items
+     */
+    public DefaultListModel getItemListModel( ){
+        DefaultListModel listModel = new DefaultListModel();
+        int i =0;
+        for (Item item: items) {
+            if(item.isAvailable) {
+                listModel.add(i, item);
+                i++;
+            }
+
+        }
+        return listModel;
+    }
+
+    /**
+     * get the list of patrons
+     * @return: List or patrons
+     */
+    public DefaultListModel getPatronListModel( ){
+        DefaultListModel listModel = new DefaultListModel();
+        int i =0;
+        for (Patron patron: people) {
+            listModel.add(i,patron);
+            i++;
+        }
+        return listModel;
     }
 }

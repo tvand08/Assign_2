@@ -2,6 +2,7 @@ package Lib_Program;
 
 import BasicIO.ASCIIDataFile;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.LinkedList;
@@ -21,6 +22,7 @@ public class Patron implements Serializable {
     protected int age;
     private double fine;
     private LinkedList<Item> items;
+    protected String errorMessage, transaction;
 
     public Patron(String[] info){
 
@@ -32,8 +34,20 @@ public class Patron implements Serializable {
         items = new LinkedList<>();
     }
     //Adds an Item to the patrons checkout
-    public void checkoutItem(Item checkout){
-        items.add(checkout);
+    public boolean checkoutItem(Item checkout){
+        if(getAge()>= checkout.minAge){
+            if(getFine()>0.0) {
+                errorMessage = "Outstanding fine";
+                return false;
+            }else {
+                items.add(checkout);
+                transaction = getNumber() + " checked out " + checkout.getNumber() + ", due "+ checkout.getDueDate();
+                return true;
+            }
+        }else{
+            errorMessage = "You are too Young";
+            return false;
+        }
     }
     //Returns the number of items currently checked out by the patron
     public int getNumItems(){
@@ -62,11 +76,15 @@ public class Patron implements Serializable {
     //Updates the Patrons fine
     public double updateFine(double add){
         fine+=add;
+        if(add<0){
+            transaction = getNumber() + "paid: $" + add*-1;
+        }
         return fine;
     }
     //Remove an Item from the Patrons possession
     public void returnItem(Item i){
         items.remove(i);
+        transaction = getNumber() + " returned " + i.getNumber() + ", Fine: $" + i.getCharge();
     }
     //Return Patron Information
     public String getInfo( ){
@@ -77,5 +95,26 @@ public class Patron implements Serializable {
         output += "  Items Out: " + getNumItems();
         output += "  Balance: " + getFine();
         return output;
+    }
+
+    public DefaultListModel getlistModel( ) {
+        DefaultListModel listModel = new DefaultListModel();
+        int i = 0;
+        for (Item item : items) {
+            listModel.add(i, item);
+            i++;
+        }
+        return listModel;
+    }
+        @Override
+    public String toString(){
+        return number;
+    }
+
+    public String getErrorMessage(){
+        return errorMessage;
+    }
+    public String getTransaction(){
+        return transaction;
     }
 }

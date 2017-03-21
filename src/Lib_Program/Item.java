@@ -1,7 +1,4 @@
 package Lib_Program;
-
-import BasicIO.ASCIIDataFile;
-
 import java.io.Serializable;
 
 /**
@@ -13,6 +10,7 @@ import java.io.Serializable;
  */
 public class Item implements Serializable{
     static final long serialVersionUID = 42L;
+    protected int minAge = 0;
     protected Patron loanedTo;
     protected String number;
     protected String title;
@@ -93,5 +91,17 @@ public class Item implements Serializable{
             output += " on loan";
         }
         return output;
+    }
+    public int getRating(){
+        return minAge;
+    }
+    //Override outputs string id
+    @Override
+    public String toString(){
+        return number;
+    }
+    //Returns the fine
+    public double getFine(){
+        return overCharge;
     }
 }

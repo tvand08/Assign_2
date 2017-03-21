@@ -17,10 +17,17 @@ public class Media extends Item {
         this.rating = info[4].charAt(0);
         //Sanitize rating input
         switch(rating){
-            case 'F': break;
-            case 'P': break;
-            case 'R': break;
-            case 'X': break;
+            case 'F':
+                break;
+            case 'P':
+                minAge=14;
+                break;
+            case 'R':
+                minAge = 18;
+                break;
+            case 'X':
+                minAge = 21;
+                break;
             default:
                 System.out.println("Error: Improper rating");
                 System.exit(1);
@@ -33,7 +40,7 @@ public class Media extends Item {
         output += " Rating: " + getRating();
         return output;
     }
-    public char getRating(){
+    public int getRating(){
         return rating;
     }
 }

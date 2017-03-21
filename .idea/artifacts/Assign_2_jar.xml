@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Assign_2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Assign_2_jar</output-path>
+    <root id="archive" name="Assign_2.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../Random/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Assign_2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Programming/BasicIO.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

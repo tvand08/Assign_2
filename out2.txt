@@ -1,0 +1,8 @@
+4444 checked out 111.111, due 42
+3333 returned 111.111, Fine: $0.25
+3333paid: $0.25
+3333 checked out 444.123, due 0
+3333 returned 333.444, Fine: $0.5
+3333 returned 444.123, Fine: $2.0
+2222 checked out 444.123, due 46
+Saving Database, Closing.

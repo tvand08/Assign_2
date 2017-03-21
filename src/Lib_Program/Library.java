@@ -1,19 +1,18 @@
 package Lib_Program;
 import java.io.*;
-import java.util.LinkedList;
+
 import BasicIO.*;
-import GUIs.*;
+
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
  * Student: Trevor Vanderee
  * Number: 5877022
- * Assignment 1
+ * Assignment 2
  * COSC 2P05: programming languages
- * Date: 2017-01-25
+ * Date: 2017-03-17
  *
  * Class: Library
  * This is the main class from
@@ -25,25 +24,28 @@ public class Library implements Serializable{
     private File file;
     private FileInputStream inputStream;
     private ObjectInputStream objectInputStream;
-    private ASCIIOutputFile out;
     private DataBase dataBase;
     public Window window;
-    private String transaction;
-    private int nextAction;
-    private boolean again;
 
     public Library( ){
 
         //Initialize System
         libraryInit();
         //Create Window
-        window = new Window();
-        //Run System
-        runProgram();
-        window.closeForm();
-        out.close();
-        //Exit
-        System.exit(0);
+        window = new Window(dataBase);
+        //Listener for JFrame Close
+        window.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(window,
+                        "Are you sure to close this window?", "Really Closing?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                        exitProgram();
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     //Initializes all library assets
@@ -51,6 +53,7 @@ public class Library implements Serializable{
         file = new File(".//output.ser");
         inputStream = null;
         objectInputStream = null;
+        //Try To read files
         try{
             inputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(inputStream);
@@ -69,71 +72,13 @@ public class Library implements Serializable{
             noClass.printStackTrace();
             System.exit(1);
         }
-        out = new ASCIIOutputFile();
+
+
     }
 
-    //to begin Library program
-    private void runProgram(){
-        //Set boolean for loop
-        again = true;
-        /*
-        Loop allows users to return to main
-         screen and call another operation
-         */
-        while(again) {
-            window.popup();
-            nextAction = window.getNextAction();
-            switch (nextAction) {
-                //For Borrow Operation
-                case 0: BorrowWin borrow = new BorrowWin(dataBase);
-                        transaction = borrow.getTransaction();
-                        if(transaction!=null) {
-                            out.writeString(transaction);
-                            out.newLine();
-                        }
-                        borrow.closeForm();
-                    break;
-                //For Return Operation
-                case 1: ReturnWin itemReturn = new ReturnWin(dataBase);
-                    transaction = itemReturn.getTransaction();
-                    if(transaction!=null) {
-                        out.writeString(transaction);
-                        out.newLine();
-
-                    }
-                        itemReturn.closeForm();
-                        break;
-                //For Pay operation
-                case 2: PayWin payWin = new PayWin(dataBase);
-                    transaction = payWin.getTransaction();
-                    if(transaction!=null) {
-                        out.writeString(transaction);
-                        out.newLine();
-
-                    }
-                        payWin.closeForm();
-                        break;
-                //To Check what books have been loaned to a patron
-                case 3: LoanedWin loanedWin = new LoanedWin(dataBase);
-                        loanedWin.closeForm();
-                        break;
-                //To Check Information of Patron
-                case 4: PatronWin patronWin = new PatronWin(dataBase);
-                        patronWin.closeForm();
-
-                    break;
-                //To check item information
-                case 5: InventoryWin inventoryWin = new InventoryWin(dataBase);
-                        inventoryWin.closeForm();
-                    break;
-                //To exit
-                case 6: again = false;
-                    break;
-                //default
-                default: again = false;
-                    break;
-            }
-        }
+    //to Exit Library program
+    private void exitProgram(){
+        window.closeLog();
         FileOutputStream fout = null;
         ObjectOutputStream oos = null;
         try{
@@ -148,8 +93,9 @@ public class Library implements Serializable{
         }
         System.exit(0);
     }
-    private void chooseFile( ) {// method to open up a file dialog and return the
-        // file. returns null if no file is chosen
+
+    //Choose File
+    private void chooseFile( ) {// method to open up a file dialog and return the file
         File f = null;
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Open File");
